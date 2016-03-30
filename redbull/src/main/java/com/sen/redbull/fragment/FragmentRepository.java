@@ -18,7 +18,6 @@ import android.widget.Toast;
 import com.alibaba.fastjson.JSON;
 import com.sen.redbull.R;
 import com.sen.redbull.activity.ActSearchLesson;
-import com.sen.redbull.activity.study.ActRepositoryDetail;
 import com.sen.redbull.adapter.LessonCatalogAdapter;
 import com.sen.redbull.adapter.StudyRecyclerAdapter;
 import com.sen.redbull.base.BaseFragment;
@@ -156,9 +155,9 @@ public class FragmentRepository extends BaseFragment implements SwipeRefreshLayo
         cataLogAdapter.setOnItemClickListener(new LessonCatalogAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position, ResourseKindBean childItemBean) {
-                Intent intent = new Intent(getActivity(), ActRepositoryDetail.class);
+               /* Intent intent = new Intent(getActivity(), ActRepositoryDetail.class);
                 intent.putExtra("catalogId", childItemBean.getId());
-                getActivity().startActivity(intent);
+                getActivity().startActivity(intent);*/
             }
         });
 

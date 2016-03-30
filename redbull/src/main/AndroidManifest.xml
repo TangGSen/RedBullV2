@@ -41,7 +41,7 @@
         android:name="com.sen.redbull.tools.SenApplication"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
-        android:label="@string/red_app_name"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Base">
         <activity
@@ -60,10 +60,6 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sen.redbull.activity.study.ActStudyDetail"
-            android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.sen.redbull.activity.VideoPlayerActivity"
             android:launchMode="singleTask"
             android:screenOrientation="landscape"
@@ -71,9 +67,6 @@
         <activity
             android:name="com.sen.redbull.activity.study.ActWriteComment"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name="com.sen.redbull.activity.study.ActRepositoryDetail"
             android:screenOrientation="portrait" />
         <activity
             android:name="com.sen.redbull.activity.exam.ActExamDetail"
@@ -110,10 +103,13 @@
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.sen.redbull.activity.study.ActResoucesStudyDetail"
-            android:screenOrientation="portrait" />
-        <activity
             android:name="com.sen.redbull.activity.NewVersionActivity"
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait" />
+
+        <!--3.30-->
+        <activity
+            android:name=".activity.study.LessonDetailActivity"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 
@@ -135,7 +131,7 @@
 
         <meta-data
             android:name="AA_DB_NAME"
-            android:value="haoliyou.db" />
+            android:value="redbull.db" />
         <meta-data
             android:name="AA_DB_VERSION"
             android:value="1" />

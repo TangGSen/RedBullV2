@@ -9,12 +9,14 @@ public class Constants {
 
     //接口
 
+
+
     // 外网地址
 
     public static final String PATH = "http://121.42.212.192/";
 
 //    1.app 更新
-public static final String APK_PATH = "http://139.129.8.158/www/resource/phoneDownload/android.html";
+public static final String APK_PATH = "http://121.42.212.192/www/view/front/20140504/dcAppAndroid.html";
 
 
     // 1.登陆
@@ -71,9 +73,16 @@ public static final String APK_PATH = "http://139.129.8.158/www/resource/phoneDo
 
     // 获取课程评论
     public static final String PATH_GETLESSONCOMMENT = "MobileServer/GetCommentsList";
+
+    // 获取课程评论个数
+    public static final String PATH_LESSONCOMMENTS = "MobileServer/lessonComments";
     //获取课程的章节
-    public static final String PATH_GETSECTION = "MobileServer/GetSection";
+    public static final String PATH_GETSECTION = "MobileServer/getSection";
     //参数   String leid  课程id
+
+
+    // 5.课程详情
+    public static final String PATH_LESSONCOURSE_DETAILS = "MobileServer/lessonCourseDetails";
 
     // pageNum 页号
     // 参数2：leid 类型：String 描述：知识分类ID
@@ -89,9 +98,11 @@ public static final String APK_PATH = "http://139.129.8.158/www/resource/phoneDo
     // 参数3：content 类型：String 描述：评论内容
 
     //
-    public static final String PATH_PICTURE = PATH+"www/resource/lessonImg/";
-    public static final String PATH_PLAYER =  PATH+"www/resource/mp4Course/";
-    public static final String PATH_PORTRAIT =  PATH+"www/resource/user/images/";
+
+
+    public static final String PATH_PICTURE = PATH + "www/resource/lessonMiniPicture/";
+    public static final String PATH_PLAYER = PATH + "www/resource/mp4Course/";
+    public static final String PATH_PORTRAIT = PATH + "www/resource/user/images/";
 
     // 10. 获得论坛模块
     public static final String PATH_BBSList = "MobileServer/tbztBBSList";
@@ -127,4 +138,8 @@ public static final String APK_PATH = "http://139.129.8.158/www/resource/phoneDo
     // 4.获取试题
     public static final String PATH_ENTEREXAM = "MobileServer/EnterExam";
     public static final String PATH_SUBMITEXAM = "MobileServer/SubmitExam";
+
+
+
+
 }

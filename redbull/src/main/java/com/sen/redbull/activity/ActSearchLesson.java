@@ -1,6 +1,5 @@
 package com.sen.redbull.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
 import com.sen.redbull.R;
-import com.sen.redbull.activity.study.ActResoucesStudyDetail;
 import com.sen.redbull.adapter.StudyRecyclerAdapter;
 import com.sen.redbull.base.BaseActivity;
 import com.sen.redbull.mode.LessonItemBean;
@@ -114,12 +112,12 @@ public class ActSearchLesson extends BaseActivity {
             adapter.setOnItemClickListener(new StudyRecyclerAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position, LessonItemBean childItemBean) {
-                    Intent intent = new Intent(ActSearchLesson.this, ActResoucesStudyDetail.class);
+                  /*  Intent intent = new Intent(ActSearchLesson.this, ActResoucesStudyDetail.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("itemLessonBean", childItemBean);
                     bundle.putInt("itemPosition", position);
                     intent.putExtra("FragmentStudyBundle", bundle);
-                    startActivity(intent);
+                    startActivity(intent);*/
                 }
             });
         } else {

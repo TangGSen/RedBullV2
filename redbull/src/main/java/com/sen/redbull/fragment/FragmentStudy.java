@@ -23,7 +23,7 @@ import com.sen.redbull.R;
 import com.sen.redbull.activity.ActLogin;
 import com.sen.redbull.activity.DownloadManagerActivity;
 import com.sen.redbull.activity.MainActivity;
-import com.sen.redbull.activity.study.ActStudyDetail;
+import com.sen.redbull.activity.study.LessonDetailActivity;
 import com.sen.redbull.adapter.StudyRecyclerAdapter;
 import com.sen.redbull.base.BaseFragment;
 import com.sen.redbull.imgloader.AnimateFirstDisplayListener;
@@ -136,11 +136,11 @@ public class FragmentStudy extends BaseFragment implements SwipeRefreshLayout.On
             adapter = new StudyRecyclerAdapter(getActivity(), LesssListData);
             study_lesson_recyclerview.setAdapter(adapter);
             //设置Item增加、移除动画
-            study_lesson_recyclerview.setItemAnimator(new DefaultItemAnimator());
+
             adapter.setOnItemClickListener(new StudyRecyclerAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position, LessonItemBean childItemBean) {
-                    Intent intent = new Intent(getActivity(), ActStudyDetail.class);
+                   Intent intent = new Intent(getActivity(), LessonDetailActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("itemLessonBean", childItemBean);
                     bundle.putInt("itemPosition", position);
@@ -251,6 +251,20 @@ public class FragmentStudy extends BaseFragment implements SwipeRefreshLayout.On
         swipe_refresh_widget.setColorSchemeResources(R.color.theme_color, R.color.theme_color);
         swipe_refresh_widget.setOnRefreshListener(this);
 
+        study_lesson_recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener(){
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                int topRowVerticalPosition =
+                        (recyclerView == null || recyclerView.getChildCount() == 0) ? 0 : recyclerView.getChildAt(0).getTop();
+                swipe_refresh_widget.setEnabled(topRowVerticalPosition >= 0);
+
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+        });
 
     }
 

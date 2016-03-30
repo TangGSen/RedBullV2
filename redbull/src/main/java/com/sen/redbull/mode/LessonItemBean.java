@@ -4,186 +4,123 @@ import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class LessonItemBean implements Serializable {
-	private int allowday;
 	private String comment;
 	private String createdate;
-	private String id;
-	private String isselected;
-	private String aaaaaa ;
-	private String knowname;
-	private int lessonCost;
-	//
-	private String leName;
+	private String leid;
+	private String score;
+	private String hour;
 	private String name;
 	private String picture;
 	private String remark;
 	private String videoname;
-	private String traincomment;
-	
-	
-	public String getLeName() {
-		return leName;
-	}
-	public void setLeName(String leName) {
-		this.leName = leName;
-	}
-	public String getTraincomment() {
-		return traincomment;
-	}
-	public void setTraincomment(String traincomment) {
-		this.traincomment = traincomment;
-	}
-	public int getAllowday() {
-		if (allowday == 0) {
-			return 0;
-		} else {
-			return allowday;
-		}
-	}
-	public void setAllowday(int allowday) {
-		this.allowday = allowday;
-	}
+	/**
+	 * @return the comment
+	 */
 	public String getComment() {
-		if (comment == null) {
-			return null;
-		} else {
-			return comment;
-		}
+		return comment;
 	}
-
+	/**
+	 * @param comment the comment to set
+	 */
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
-
+	/**
+	 * @return the createdate
+	 */
 	public String getCreatedate() {
-		if (createdate == null) {
-			return null;
-		} else {
-			return createdate;
-		}
+		return createdate;
 	}
-
+	/**
+	 * @param createdate the createdate to set
+	 */
 	public void setCreatedate(String createdate) {
 		this.createdate = createdate;
 	}
-
-	public String getId() {
-		if (id == null) {
-			return null;
-		} else {
-			return id;
-		}
+	/**
+	 * @return the leid
+	 */
+	public String getLeid() {
+		return leid;
 	}
-
-	public void setId(String id) {
-		this.id = id;
+	/**
+	 * @param leid the leid to set
+	 */
+	public void setLeid(String leid) {
+		this.leid = leid;
 	}
-
-	public String getIsselected() {
-		if (isselected == null) {
-			return null;
-		} else {
-			return isselected;
-		}
+	/**
+	 * @return the score
+	 */
+	public String getScore() {
+		return score;
 	}
-
-	public void setIsselected(String isselected) {
-		this.isselected = isselected;
+	/**
+	 * @param score the score to set
+	 */
+	public void setScore(String score) {
+		this.score = score;
 	}
-//	public String getkC_FLAG() {
-//		return kC_FLAG;
-//	}
-//	public void setkC_FLAG(String kC_FLAG) {
-//		this.kC_FLAG = kC_FLAG;
-//	}
-	
-	
-	public String getKnowname() {
-		if (knowname == null) {
-			return null;
-		} else {
-			return knowname;
-		}
+	/**
+	 * @return the hour
+	 */
+	public String getHour() {
+		return hour;
 	}
-
-	public String getAaaaaa() {
-		return aaaaaa;
+	/**
+	 * @param hour the hour to set
+	 */
+	public void setHour(String hour) {
+		this.hour = hour;
 	}
-	public void setAaaaaa(String aaaaaa) {
-		this.aaaaaa = aaaaaa;
-	}
-	public void setKnowname(String knowname) {
-		this.knowname = knowname;
-	}
-
-	public int getLessonCost() {
-		if (lessonCost == 0) {
-			return 0;
-		} else {
-			return lessonCost;
-		}
-	}
-
-	public void setLessonCost(int lessonCost) {
-		this.lessonCost = lessonCost;
-	}
-
+	/**
+	 * @return the name
+	 */
 	public String getName() {
-		if (name == null) {
-			return null;
-		} else {
-			return name;
-		}
+		return name;
 	}
-
+	/**
+	 * @param name the name to set
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	/**
+	 * @return the picture
+	 */
 	public String getPicture() {
-		if (picture == null) {
-			return null;
-		} else {
-			return picture;
-		}
+		return picture;
 	}
-
+	/**
+	 * @param picture the picture to set
+	 */
 	public void setPicture(String picture) {
 		this.picture = picture;
 	}
-
+	/**
+	 * @return the remark
+	 */
 	public String getRemark() {
-		if (remark == null) {
-			return null;
-		} else {
-			return remark;
-		}
+		return remark;
 	}
-
+	/**
+	 * @param remark the remark to set
+	 */
 	public void setRemark(String remark) {
 		this.remark = remark;
 	}
-
+	/**
+	 * @return the videoname
+	 */
 	public String getVideoname() {
-		if (videoname == null) {
-			return null;
-		} else {
-			return videoname;
-		}
-
+		return videoname;
 	}
-
+	/**
+	 * @param videoname the videoname to set
+	 */
 	public void setVideoname(String videoname) {
 		this.videoname = videoname;
 	}
-	@Override
-	public String toString() {
-		return "LessonItemBean [allowday=" + allowday + ", comment=" + comment
-				+ ", createdate=" + createdate + ", id=" + id + ", isselected="
-				+ isselected + ", aaaaaa=" + aaaaaa + ", knowname=" + knowname
-				+ ", lessonCost=" + lessonCost + ", name=" + name
-				+ ", picture=" + picture + ", remark=" + remark
-				+ ", videoname=" + videoname + "]";
-	}
+
 
 }

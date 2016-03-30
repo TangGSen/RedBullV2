@@ -72,13 +72,21 @@ public class StudyRecyclerAdapter extends RecyclerView.Adapter<StudyRecyclerAdap
             });
         }
         LessonItemBean itemBean = mData.get(position);
-        String imgUrl = Constants.PATH + Constants.PATH_PICTURE + itemBean.getPicture();
-        holder.mImageCourse.setTag(imgUrl);
-        holder.item_tv_name.setText( itemBean.getName());
-        holder.item_tv_time.setText("上传时间：" + StringUItils.delString(itemBean.getCreatedate(),10));
-        holder.item_tv_brief.setText(  itemBean.getRemark());
-        ImageLoader.getInstance().displayImage((String) holder.mImageCourse.getTag(), holder.mImageCourse, ImageLoadOptions.getStudyImageOptions(),new AnimateFirstDisplayListener());
+        String imgUrl = Constants.PATH_PICTURE + itemBean.getPicture();
+        holder.img_course_item.setTag(imgUrl);
+        holder.tv_course_name.setText( itemBean.getName());
+        holder.tv_create_time.setText("上传时间：" + StringUItils.delString(itemBean.getCreatedate(),19));
+        holder.tv_course_score.setText( "标准学分："+ delString(itemBean.getScore())+"学分");
+        holder.tv_course_hours.setText( "标准学时："+ delString(itemBean.getHour())+"学时");
+        ImageLoader.getInstance().displayImage((String) holder.img_course_item.getTag(), holder.img_course_item, ImageLoadOptions.getStudyImageOptions(),new AnimateFirstDisplayListener());
 
+    }
+
+    public  static String delString(String string){
+        if (string==null){
+            return "0";
+        }
+        return string;
     }
 
 
@@ -90,15 +98,16 @@ public class StudyRecyclerAdapter extends RecyclerView.Adapter<StudyRecyclerAdap
 
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        public AppCompatTextView item_tv_time, item_tv_name, item_tv_brief;
-        public AppCompatImageView mImageCourse;
+        public AppCompatTextView tv_course_name, tv_create_time, tv_course_score,tv_course_hours;
+        public AppCompatImageView img_course_item;
 
         public ViewHolder(View view) {
             super(view);
-            item_tv_name = (AppCompatTextView) view.findViewById(R.id.item_tv_name);
-            item_tv_brief = (AppCompatTextView) view.findViewById(R.id.item_tv_brief);
-            item_tv_time = (AppCompatTextView) view.findViewById(R.id.item_tv_time);
-            mImageCourse = (AppCompatImageView) view.findViewById(R.id.item_imv_course);
+            tv_course_name = (AppCompatTextView) view.findViewById(R.id.tv_course_name);
+            tv_course_score = (AppCompatTextView) view.findViewById(R.id.tv_course_score);
+            tv_create_time = (AppCompatTextView) view.findViewById(R.id.tv_create_time);
+            tv_course_hours = (AppCompatTextView) view.findViewById(R.id.tv_course_hours);
+            img_course_item = (AppCompatImageView) view.findViewById(R.id.img_course_item);
         }
 
 

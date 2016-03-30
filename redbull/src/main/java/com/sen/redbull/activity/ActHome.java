@@ -132,22 +132,24 @@ public class ActHome extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.imv_learn)
-    public void studyPage() {
-        jumpToMain(0);
-    }
 
 
 
     @OnClick(R.id.imv_resourse)
-    public void testPage() {
-        jumpToMain(1);
+    public void resoursePage() {
+        jumpToMain(0);
     }
 
     @OnClick(R.id.imv_bbs)
-    public void resoucePage() {
+    public void bbsPage() {
+        jumpToMain(1);
+    }
+
+    @OnClick(R.id.imv_learn)
+    public void studyPage() {
         jumpToMain(2);
     }
+
 
 
     public void jumpToMain(int position){
