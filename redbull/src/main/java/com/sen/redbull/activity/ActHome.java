@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatImageView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -11,6 +12,7 @@ import android.view.KeyEvent;
 import com.alibaba.fastjson.JSON;
 import com.sen.redbull.R;
 import com.sen.redbull.base.BaseActivity;
+import com.sen.redbull.tools.AcountManager;
 import com.sen.redbull.tools.Constants;
 import com.sen.redbull.tools.ResourcesUtils;
 import com.sen.redbull.tools.ToastUtils;
@@ -19,21 +21,22 @@ import com.sen.redbull.widget.CustomerDialog;
 import com.zhy.http.okhttp.OkHttpUtils;
 import com.zhy.http.okhttp.callback.Callback;
 
+import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 
 public class ActHome extends BaseActivity {
 
-    /*@Bind(R.id.act_home_study)
-    AppCompatImageView act_home_study;
-    @Bind(R.id.act_home_test)
-    AppCompatImageView act_home_test;
-    @Bind(R.id.act_home_resouce)
-    AppCompatImageView act_home_resouce;
-    @Bind(R.id.act_home_coach)
-    AppCompatImageView act_home_coach;*/
+   @Bind(R.id.imv_resourse)
+   AppCompatImageView imv_resourse;
+    @Bind(R.id.imv_bbs)
+    AppCompatImageView imv_bbs;
+    @Bind(R.id.imv_learn)
+    AppCompatImageView imv_learn;
+
     @Override
     protected void init() {
         super.init();
@@ -52,7 +55,6 @@ public class ActHome extends BaseActivity {
         String url = Constants.PATH + Constants.VERSION;
         OkHttpUtils.post()
                 .url(url)
-                .addParams("version", 2+"")
                 .build()
                 .execute(new Callback<Boolean>() {
                     @Override
@@ -130,27 +132,21 @@ public class ActHome extends BaseActivity {
         }
     }
 
-   /* @OnClick(R.id.act_home_study)
+    @OnClick(R.id.imv_learn)
     public void studyPage() {
         jumpToMain(0);
     }
 
 
 
-    @OnClick(R.id.act_home_test)
+    @OnClick(R.id.imv_resourse)
     public void testPage() {
         jumpToMain(1);
     }
 
-    @OnClick(R.id.act_home_resouce)
+    @OnClick(R.id.imv_bbs)
     public void resoucePage() {
         jumpToMain(2);
-    }
-
-    @OnClick(R.id.act_home_coach)
-    public void coachPage() {
-        Intent intent = new Intent(ActHome.this,DevelopingActivity.class);
-        startActivity(intent);
     }
 
 
@@ -167,7 +163,6 @@ public class ActHome extends BaseActivity {
        }
 
     }
-*/
     private long exitTime;
 
     @Override
