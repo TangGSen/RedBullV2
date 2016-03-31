@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.sen.redbull.R;
@@ -39,7 +40,8 @@ import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class LessonDetailActivity extends BaseActivity {
+public class ActLessonDetail extends BaseActivity {
+
 
 
     @Bind(R.id.btn_studydetail_back)
@@ -81,6 +83,9 @@ public class LessonDetailActivity extends BaseActivity {
     private static final int GET_SECTION_DATA_ERROR = 3;
     private static final int SHOW_LESSDETAIL_DATA = 4;
     private static final int GET_LESSDETAIL_DATA_ERROR = 5;
+    private static final int GET_SECTION_DATA = 6;
+    private static final int SHOW_UNSELECTED_TIP = 7;
+    private static final int SHOW_SELECTED_TIP_GONE = 8;
 
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
@@ -94,7 +99,7 @@ public class LessonDetailActivity extends BaseActivity {
                     tv_commons_count.setText("用户评论(" + counts + ")");
                     break;
                 case 1:
-                    ToastUtils.showTextToast(LessonDetailActivity.this, "获取评论个数失败，请稍后重试");
+                    ToastUtils.showTextToast(ActLessonDetail.this, "获取评论个数失败，请稍后重试");
                     break;
 
                 case 2:
@@ -108,12 +113,14 @@ public class LessonDetailActivity extends BaseActivity {
 
                     }else {
                         //创建并设置Adapter
-                        SectionsAdapter adapter = new SectionsAdapter(LessonDetailActivity.this, setionList, childItemBean.getLeid());
+                        SectionsAdapter adapter = new SectionsAdapter(ActLessonDetail.this, setionList, childItemBean.getLeid());
                         listview_lesson.setAdapter(adapter);
                     }
+                    DialogUtils.closeDialog();
                     break;
                 case 3:
-                    ToastUtils.showTextToast(LessonDetailActivity.this, "获取课程章节失败，请稍后重试");
+                    DialogUtils.closeDialog();
+                    ToastUtils.showTextToast(ActLessonDetail.this, "获取课程章节失败，请稍后重试");
 
                     break;
                 case 4:
@@ -123,8 +130,15 @@ public class LessonDetailActivity extends BaseActivity {
                     }
                     break;
                 case 5:
-                    ToastUtils.showTextToast(LessonDetailActivity.this, "获取课程详情失败，请稍后重试");
+                    ToastUtils.showTextToast(ActLessonDetail.this, "获取课程详情失败，请稍后重试");
 
+                    break;
+                case 6:
+                    getSectionListData();
+                    break;
+                case 7:
+                    DialogUtils.closeDialog();
+                    tv_data_null_tip.setVisibility(View.VISIBLE);
                     break;
 
             }
@@ -214,11 +228,12 @@ public class LessonDetailActivity extends BaseActivity {
         super.initData(savedInstanceState);
 
         if (NetUtil.isNetworkConnected(this)) {
+            DialogUtils.showDialog(ActLessonDetail.this,"请稍等");
             getLessonDetail();
             getCommentCounts();
 
         } else {
-            ToastUtils.showTextToast(LessonDetailActivity.this, "网络未连接");
+            ToastUtils.showTextToast(ActLessonDetail.this, "网络未连接");
         }
 
     }
@@ -260,9 +275,11 @@ public class LessonDetailActivity extends BaseActivity {
                         message.what = SHOW_LESSDETAIL_DATA;
                         mHandler.sendMessage(message);
                         if (!detail.getWhether().equals("0")) {
-
                             // 然后去请求课程的列表
-                            getSectionListData();
+                            mHandler.sendEmptyMessage(GET_SECTION_DATA);
+
+                        }else{
+                            mHandler.sendEmptyMessage(SHOW_UNSELECTED_TIP);
                         }
                     }
                 });

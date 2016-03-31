@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="课程名称："
+            android:textColor="@color/font_h1"
             android:textSize="14sp" />
 
         <android.support.v7.widget.AppCompatTextView
@@ -53,6 +54,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="标准学时："
+                android:textColor="@color/font_h1"
                 android:textSize="14sp" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -76,6 +78,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="标准学分："
+                android:textColor="@color/font_h1"
                 android:textSize="14sp" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -112,6 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="学习总学时："
+                android:textColor="@color/font_h1"
                 android:textSize="14sp" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -134,6 +138,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="获得学分："
+                android:textColor="@color/font_h1"
                 android:textSize="14sp" />
 
             <android.support.v7.widget.AppCompatTextView
@@ -167,6 +172,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="学习进度："
+            android:textColor="@color/font_h1"
             android:textSize="14sp" />
 
         <android.support.v7.widget.AppCompatTextView

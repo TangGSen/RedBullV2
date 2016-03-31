@@ -130,6 +130,7 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center_horizontal"
+                android:text="请先选课查看课程章节"
                 android:visibility="gone" />
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/listview_lesson"
