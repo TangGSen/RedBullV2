@@ -4,18 +4,18 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.AppCompatImageButton;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.Toast;
 
 import com.alibaba.fastjson.JSON;
-import com.jcodecraeer.xrecyclerview.ProgressStyle;
-import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.cjj.MaterialRefreshLayout;
+import com.cjj.MaterialRefreshListener;
 import com.sen.redbull.R;
 import com.sen.redbull.adapter.CommentListAdapter;
 import com.sen.redbull.base.BaseActivity;
@@ -52,14 +52,14 @@ public class ActCommentList extends BaseActivity  {
     private CommentHomeBean getLessonCommentListBean;
 
     @Bind(R.id.listview_comment)
-    XRecyclerView xRecyclerView;
+    RecyclerView xRecyclerView;
     @Bind(R.id.common_back)
     AppCompatTextView common_back;
     @Bind(R.id.btn_write_common)
     AppCompatImageButton btn_write_common;
 
     @Bind(R.id.comment_refresh_widget)
-    SwipeRefreshLayout swipe_refresh_widget;
+    MaterialRefreshLayout swipe_refresh_widget;
 
 
 
@@ -176,50 +176,48 @@ public class ActCommentList extends BaseActivity  {
         xRecyclerView.addItemDecoration(new RecyleViewItemDecoration(this, R.drawable.shape_recycle_item_decoration));
         adapter = new CommentListAdapter(ActCommentList.this, allCommonList);
         xRecyclerView.setAdapter(adapter);
+        swipe_refresh_widget.setLoadMore(true);
+        swipe_refresh_widget.setMaterialRefreshListener(new MaterialRefreshListener() {
+                        @Override
+                       public void onRefresh(MaterialRefreshLayout materialRefreshLayout) {
+                               mHandler.postDelayed(new Runnable() {
+                                        public void run() {
+                                            currentPage =1;
+                                            isLoadReflesh = true;
+                                            allCommonList.clear();
+                                            getCommntList(1);
+                                            isLoadReflesh = false;
+                                            swipe_refresh_widget.finishRefresh();
+                                             }
+                                     }, 1000);
+                            }
 
-        swipe_refresh_widget.setColorSchemeResources(R.color.theme_color, R.color.theme_color);
-        swipe_refresh_widget.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                mHandler.postDelayed(new Runnable() {
-                    public void run() {
-                        currentPage =1;
-                        isLoadReflesh = true;
-                        allCommonList.clear();
-                        getCommntList(1);
-                        isLoadReflesh = false;
-                        swipe_refresh_widget.setRefreshing(false);
-                    }
-                }, 1000);
-            }
-        });
 
-        xRecyclerView.setLaodingMoreProgressStyle(ProgressStyle.BallPulse);
-        xRecyclerView.setPullRefreshEnabled(false);
-        xRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
-            @Override
-            public void onRefresh() {
+                               @Override
+                       public void onRefreshLoadMore(MaterialRefreshLayout materialRefreshLayout) {
+                              super.onRefreshLoadMore(materialRefreshLayout);
+                               mHandler.postDelayed(new Runnable() {
+                                      public void run() {
 
-            }
 
-            @Override
-            public void onLoadMore() {
-                mHandler.postDelayed(new Runnable() {
-                    public void run() {
-                        if (maxPage == currentPage) {
-                            xRecyclerView.loadMoreComplete();
-                            Toast.makeText(ActCommentList.this, "已加载全部数据", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
-                        isLoadMore = true;
-                        currentPage++;
-                        getCommntList(currentPage);
-                        isLoadMore = false;
-                        xRecyclerView.loadMoreComplete();
-                    }
-                }, 1000);
-            }
-        });
+                                              if (maxPage == currentPage) {
+                                                     Toast.makeText(ActCommentList.this, "没有更多数据了", Toast.LENGTH_SHORT).show();
+                                                  swipe_refresh_widget.finishRefreshLoadMore();
+                                                      return;
+                                                 }
+                                          isLoadMore = true;
+                                          currentPage++;
+                                          getCommntList(currentPage);
+                                          isLoadMore = false;
+                                          swipe_refresh_widget.finishRefreshLoadMore();;
+                                            }
+                                     }, 1000);
+                          }
+                     });
+
+
+
+
 
 
 

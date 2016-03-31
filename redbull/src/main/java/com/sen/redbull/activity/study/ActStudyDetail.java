@@ -1,9 +1,11 @@
 package com.sen.redbull.activity.study;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.AppCompatTextView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import android.view.View;
 
 import com.alibaba.fastjson.JSON;
 import com.sen.redbull.R;
+import com.sen.redbull.activity.VideoPlayerActivity;
 import com.sen.redbull.adapter.SectionsAdapter;
 import com.sen.redbull.base.BaseActivity;
 import com.sen.redbull.mode.LessonCommentCounts;
@@ -36,13 +39,12 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class ActLessonDetail extends BaseActivity {
-
-
+public class ActStudyDetail extends BaseActivity {
 
     @Bind(R.id.btn_studydetail_back)
     AppCompatTextView btn_studydetail_back;
@@ -70,6 +72,9 @@ public class ActLessonDetail extends BaseActivity {
     @Bind(R.id.tv_data_null_tip)
     AppCompatTextView tv_data_null_tip;
 
+    @Bind(R.id.btn_lesson_collection)
+    AppCompatButton btn_lesson_collection;
+
     @Bind(R.id.listview_lesson)
     RecyclerView listview_lesson;
 
@@ -87,6 +92,7 @@ public class ActLessonDetail extends BaseActivity {
     private static final int SHOW_UNSELECTED_TIP = 7;
     private static final int SHOW_SELECTED_TIP_GONE = 8;
 
+    private List<SectionItemBean> setionList;
     private Handler mHandler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message msg) {
@@ -99,7 +105,7 @@ public class ActLessonDetail extends BaseActivity {
                     tv_commons_count.setText("用户评论(" + counts + ")");
                     break;
                 case 1:
-                    ToastUtils.showTextToast(ActLessonDetail.this, "获取评论个数失败，请稍后重试");
+                    ToastUtils.showTextToast(ActStudyDetail.this, "获取评论个数失败，请稍后重试");
                     break;
 
                 case 2:
@@ -108,19 +114,19 @@ public class ActLessonDetail extends BaseActivity {
                         return false;
                     }
 
-                    List<SectionItemBean> setionList = sectionBean.getSectionlist();
+                  setionList = sectionBean.getSectionlist();
                     if (setionList.size()==0){
 
                     }else {
                         //创建并设置Adapter
-                        SectionsAdapter adapter = new SectionsAdapter(ActLessonDetail.this, setionList, childItemBean.getLeid());
+                        SectionsAdapter adapter = new SectionsAdapter(ActStudyDetail.this, setionList, childItemBean.getLeid());
                         listview_lesson.setAdapter(adapter);
                     }
                     DialogUtils.closeDialog();
                     break;
                 case 3:
                     DialogUtils.closeDialog();
-                    ToastUtils.showTextToast(ActLessonDetail.this, "获取课程章节失败，请稍后重试");
+                    ToastUtils.showTextToast(ActStudyDetail.this, "获取课程章节失败，请稍后重试");
 
                     break;
                 case 4:
@@ -130,7 +136,7 @@ public class ActLessonDetail extends BaseActivity {
                     }
                     break;
                 case 5:
-                    ToastUtils.showTextToast(ActLessonDetail.this, "获取课程详情失败，请稍后重试");
+                    ToastUtils.showTextToast(ActStudyDetail.this, "获取课程详情失败，请稍后重试");
 
                     break;
                 case 6:
@@ -139,6 +145,9 @@ public class ActLessonDetail extends BaseActivity {
                 case 7:
                     DialogUtils.closeDialog();
                     tv_data_null_tip.setVisibility(View.VISIBLE);
+                    break;
+                case 8:
+                    tv_data_null_tip.setVisibility(View.GONE);
                     break;
 
             }
@@ -190,6 +199,7 @@ public class ActLessonDetail extends BaseActivity {
         tv_all_time.setText(studyTme);
         tv_get_sorce.setText(score);
         tv_learn_progress.setText(studyPlan);
+        tv_content_introduction.setText(courseDetails.getTraincomment());
     }
 
 
@@ -227,14 +237,22 @@ public class ActLessonDetail extends BaseActivity {
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
 
+        setViewData();
+
         if (NetUtil.isNetworkConnected(this)) {
-            DialogUtils.showDialog(ActLessonDetail.this,"请稍等");
+            DialogUtils.showDialog(ActStudyDetail.this,"请稍等");
             getLessonDetail();
             getCommentCounts();
 
         } else {
-            ToastUtils.showTextToast(ActLessonDetail.this, "网络未连接");
+            ToastUtils.showTextToast(ActStudyDetail.this, "网络未连接");
         }
+
+    }
+    //设置数据
+    private void setViewData() {
+        tv_head_name.setText(TextUtils.isEmpty(childItemBean.getName())?" ":childItemBean.getName());
+
 
     }
 
@@ -368,4 +386,56 @@ public class ActLessonDetail extends BaseActivity {
                     }
                 });
     }
+
+
+    //点击事件
+
+    //返回
+    @OnClick(R.id.btn_studydetail_back)
+    public void clickOnBack() {
+        finish();
+        overridePendingTransition(android.R.anim.slide_in_left,
+                android.R.anim.slide_out_right);
+    }
+
+    @OnClick(R.id.btn_startPlayer)
+    public void startVideo() {
+        videoStartPlay(0);
+    }
+
+    // 播放Video
+    //点击播放视频
+
+    public void videoStartPlay(int postion) {
+        if (setionList==null){
+            ToastUtils.showTextToast(ActStudyDetail.this, "请检查网络获取课程章节");
+            return;
+        }
+        if (setionList.size()==0){
+            ToastUtils.showTextToast(ActStudyDetail.this, "请检查网络获取课程章节");
+            return;
+        }
+        String url = Constants.PATH_PLAYER + childItemBean.getLeid() + "/" + setionList.get(postion).getSectionurl();
+        Intent startPlayIntent = new Intent(ActStudyDetail.this, VideoPlayerActivity.class);
+        startPlayIntent.setData(Uri.parse(url));
+        startActivity(startPlayIntent);
+    }
+
+    //看评论
+    @OnClick(R.id.layout_user_comment)
+    public void startComents() {
+        Intent in = new Intent(this, ActCommentList.class);
+        in.putExtra("leid", childItemBean.getLeid());
+        in.putExtra("from", "ActStudyDetail");
+        startActivity(in);
+    }
+
+    @Override
+    protected void onDestroy() {
+      //  EventBus.getDefault().unregister(this);
+        mHandler.removeCallbacksAndMessages(null);
+        super.onDestroy();
+
+    }
+
 }

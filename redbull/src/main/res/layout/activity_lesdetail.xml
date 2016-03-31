@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/white"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -31,14 +31,17 @@
             android:textColor="@color/font_h1"
             android:textSize="@dimen/tab_forn_size_18sp" />
 
-        <android.support.v7.widget.AppCompatTextView
+        <android.support.v7.widget.AppCompatButton
             android:id="@+id/btn_lesson_collection"
-            android:layout_width="@dimen/common_48dp"
-            android:layout_height="@dimen/common_48dp"
+            android:layout_width="56dp"
+            android:layout_height="@dimen/common_28dp"
             android:layout_gravity="right|center_vertical"
-            android:layout_marginRight="@dimen/common_8dp"
-            android:drawableRight="@drawable/seletor_lesson_isseleted"
-            android:paddingRight="@dimen/common_16dp" />
+            android:layout_marginRight="@dimen/common_16dp"
+            android:text="我要选课"
+            android:textSize="@dimen/common_12sp"
+            android:textColor="@color/tab_bgcolor"
+            android:background="@drawable/bg_login_btn"
+             />
 
     </android.support.v7.widget.Toolbar>
 
@@ -52,14 +55,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="none"
-        android:visibility="visible" >
+        android:visibility="visible">
 
         <LinearLayout
             android:id="@+id/layout_chapter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="visible" >
+            android:visibility="visible">
 
             <RelativeLayout
                 android:id="@+id/layout_start_video"
@@ -81,7 +84,7 @@
                 android:layout_height="25dp"
                 android:background="@color/under_bar_line"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <View
                     android:layout_width="2dp"
@@ -99,14 +102,14 @@
                     android:textSize="@dimen/fragment_font_16sp" />
             </LinearLayout>
 
-           <include layout="@layout/fragment_lesson_intro" />
+            <include layout="@layout/fragment_lesson_intro" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:background="@color/under_bar_line"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <View
                     android:layout_width="2dp"
@@ -132,6 +135,7 @@
                 android:gravity="center_horizontal"
                 android:text="请先选课查看课程章节"
                 android:visibility="gone" />
+
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/listview_lesson"
                 android:layout_width="match_parent"
@@ -144,7 +148,7 @@
                 android:layout_height="25dp"
                 android:background="@color/under_bar_line"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <View
                     android:layout_width="2dp"
@@ -156,16 +160,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:textColor="@color/font_h1"
-                    android:text="课程评论"
                     android:gravity="center_vertical"
+                    android:text="课程评论"
+                    android:textColor="@color/font_h1"
                     android:textSize="@dimen/fragment_font_16sp" />
             </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/layout_user_comment"
                 android:layout_width="match_parent"
-                android:layout_height="50dp" >
+                android:layout_height="50dp">
 
                 <android.support.v7.widget.AppCompatImageView
                     android:id="@+id/lesdet_imv_comshow"
@@ -200,7 +204,7 @@
                 android:layout_height="25dp"
                 android:background="@color/under_bar_line"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal">
 
                 <View
                     android:layout_width="2dp"
@@ -212,9 +216,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
+                    android:gravity="center_vertical"
                     android:text="课程简介"
                     android:textColor="@color/font_h1"
-                    android:gravity="center_vertical"
                     android:textSize="@dimen/fragment_font_16sp" />
             </LinearLayout>
 
@@ -222,9 +226,7 @@
                 android:id="@+id/tv_content_introduction"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/common_8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
+                android:layout_margin="@dimen/common_8dp"
                 android:textColor="@color/font_h2"
                 android:textSize="14sp" />
         </LinearLayout>

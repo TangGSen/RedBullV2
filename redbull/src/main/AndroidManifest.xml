@@ -109,7 +109,7 @@
 
         <!--3.30-->
         <activity
-            android:name=".activity.study.ActLessonDetail"
+            android:name=".activity.study.ActStudyDetail"
             android:launchMode="singleTask"
             android:screenOrientation="portrait" />
 

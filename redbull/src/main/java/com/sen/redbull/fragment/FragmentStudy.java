@@ -23,7 +23,7 @@ import com.sen.redbull.R;
 import com.sen.redbull.activity.ActLogin;
 import com.sen.redbull.activity.DownloadManagerActivity;
 import com.sen.redbull.activity.MainActivity;
-import com.sen.redbull.activity.study.ActLessonDetail;
+import com.sen.redbull.activity.study.ActStudyDetail;
 import com.sen.redbull.adapter.StudyRecyclerAdapter;
 import com.sen.redbull.base.BaseFragment;
 import com.sen.redbull.imgloader.AnimateFirstDisplayListener;
@@ -140,7 +140,7 @@ public class FragmentStudy extends BaseFragment implements SwipeRefreshLayout.On
             adapter.setOnItemClickListener(new StudyRecyclerAdapter.OnItemClickListener() {
                 @Override
                 public void onItemClick(View view, int position, LessonItemBean childItemBean) {
-                   Intent intent = new Intent(getActivity(), ActLessonDetail.class);
+                   Intent intent = new Intent(getActivity(), ActStudyDetail.class);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("itemLessonBean", childItemBean);
                     bundle.putInt("itemPosition", position);

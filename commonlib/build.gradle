@@ -37,5 +37,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.2.0'
     compile files('libs/activeandroid-3.1-beta.jar')
     compile 'com.tencent.bugly:crashreport:latest.release'
-    compile 'com.jcodecraeer:xrecyclerview:1.2.6'
+    compile project(':refleshlibrary')
 }
