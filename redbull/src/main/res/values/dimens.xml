@@ -42,4 +42,5 @@
     <dimen name="common_30dp">30dp</dimen>
     <dimen name="common_12dp">12dp</dimen>
     <dimen name="common_18dp">18dp</dimen>
+    <dimen name="common_10sp">10sp</dimen>
 </resources>

@@ -9,26 +9,22 @@ import android.view.ViewGroup;
 
 import com.sen.redbull.R;
 import com.sen.redbull.mode.ResourseKindBean;
-import com.sen.redbull.tools.ResourcesUtils;
 
 import java.util.List;
 
 /**
  * Created by Sen on 2016/2/22.
  */
-public class LessonCatalogAdapter extends RecyclerView.Adapter<LessonCatalogAdapter.ViewHolder> {
-    private List<ResourseKindBean> mData;
+public class ResoursCatalogAdapter extends RecyclerView.Adapter<ResoursCatalogAdapter.ViewHolder> {
+    private List<String> mData;
     private Context mContext;
 
-    public LessonCatalogAdapter(Context context, List<ResourseKindBean> data) {
+    public ResoursCatalogAdapter(Context context, List<String> data) {
         mContext = context;
         mData = data;
     }
 
-//    public void addLessonBeanData(List<LessonItemBean> data){
-//        mData.addAll(data);
-//        notifyDataSetChanged();
-//    }
+
 
     private OnItemClickListener onItemClickListener = null;
 
@@ -46,7 +42,7 @@ public class LessonCatalogAdapter extends RecyclerView.Adapter<LessonCatalogAdap
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_resourse_catalog, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_fragment_resource, parent, false);
         ViewHolder viewHolder = new ViewHolder(view);
 
         return viewHolder;
@@ -55,24 +51,10 @@ public class LessonCatalogAdapter extends RecyclerView.Adapter<LessonCatalogAdap
     @Override
     public void onBindViewHolder(final ViewHolder holder, final int position) {
 
-        ResourseKindBean itemBean = mData.get(position);
+        String itemBean = mData.get(position);
 
-        holder.item_catalog_name.setText(itemBean.getName());
-        if (position%2==0){
-            holder.viewBar.setBackgroundColor(ResourcesUtils.getResColor(mContext,R.color.view_bar_blue));
-        }else{
-            holder.viewBar.setBackgroundColor(ResourcesUtils.getResColor(mContext,R.color.view_bar_orgen));
-        }
-        if (onItemClickListener != null) {
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+        holder.item_catalog_name.setText(itemBean);
 
-                    onItemClickListener.onItemClick(holder.itemView, position,mData.get(position));
-                }
-
-            });
-        }
 
 
     }
@@ -88,12 +70,11 @@ public class LessonCatalogAdapter extends RecyclerView.Adapter<LessonCatalogAdap
     //自定义的ViewHolder，持有每个Item的的所有界面元素
     public static class ViewHolder extends RecyclerView.ViewHolder {
         public AppCompatTextView item_catalog_name;
-        public View viewBar;
 
         public ViewHolder(View view) {
             super(view);
-            item_catalog_name = (AppCompatTextView) view.findViewById(R.id.item_catalog_name);
-            viewBar = (View) view.findViewById(R.id.view_bar);
+            item_catalog_name = (AppCompatTextView) view.findViewById(R.id.tv_catalog);
+
 
         }
 

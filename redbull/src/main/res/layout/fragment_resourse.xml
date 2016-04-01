@@ -40,18 +40,15 @@
         android:textColor="@color/secondary_text" />
     </RelativeLayout>
 
-
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/resouce_swipe_refresh_widget"
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="@dimen/common_8dp"
+        android:id="@+id/resourse_listview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        android:scrollbars="none" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/resourse_listview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:overScrollMode="never"
-            android:scrollbars="none" />
-    </android.support.v4.widget.SwipeRefreshLayout>
+
+
 
 </LinearLayout>

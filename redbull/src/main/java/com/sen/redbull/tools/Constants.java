@@ -59,8 +59,10 @@ public static final String APK_PATH = "http://121.42.212.192/www/view/front/2014
     public static final String PATH_AllOfMyCourses = "MobileServer/AllOfMyCourses";
     // 参数1：userid 类型：String 描述：用户ID
 
+
+
     // 3.选课或退课
-    public static final String PATH_CourseSelection = "MobileServer/CourseSelection";
+    public static final String PATH_COURSESELECTION = "MobileServer/CourseSelection";
     // 参数1：userid 类型：String 描述：用户ID
     // 参数2：leid 类型：String 描述：课程ID
     // 参数3：flag 类型：String 描述：1.选课操作 2.退课操作

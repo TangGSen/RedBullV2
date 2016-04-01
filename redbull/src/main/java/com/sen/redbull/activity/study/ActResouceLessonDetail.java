@@ -47,7 +47,7 @@ import okhttp3.Call;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class ActStudyDetail extends BaseActivity {
+public class ActResouceLessonDetail extends BaseActivity {
 
 
     @Bind(R.id.btn_studydetail_back)
@@ -111,7 +111,7 @@ public class ActStudyDetail extends BaseActivity {
                     tv_commons_count.setText("用户评论(" + counts + ")");
                     break;
                 case 1:
-                    ToastUtils.showTextToast(ActStudyDetail.this, "获取评论个数失败，请稍后重试");
+                    ToastUtils.showTextToast(ActResouceLessonDetail.this, "获取评论个数失败，请稍后重试");
                     break;
 
                 case 2:
@@ -125,14 +125,14 @@ public class ActStudyDetail extends BaseActivity {
 
                     } else {
                         //创建并设置Adapter
-                        SectionsAdapter adapter = new SectionsAdapter(ActStudyDetail.this, setionList, childItemBean.getLeid());
+                        SectionsAdapter adapter = new SectionsAdapter(ActResouceLessonDetail.this, setionList, childItemBean.getLeid());
                         listview_lesson.setAdapter(adapter);
                     }
                     DialogUtils.closeDialog();
                     break;
                 case 3:
                     DialogUtils.closeDialog();
-                    ToastUtils.showTextToast(ActStudyDetail.this, "获取课程章节失败，请稍后重试");
+                    ToastUtils.showTextToast(ActResouceLessonDetail.this, "获取课程章节失败，请稍后重试");
 
                     break;
                 case 4:
@@ -142,7 +142,7 @@ public class ActStudyDetail extends BaseActivity {
                     }
                     break;
                 case 5:
-                    ToastUtils.showTextToast(ActStudyDetail.this, "获取课程详情失败，请稍后重试");
+                    ToastUtils.showTextToast(ActResouceLessonDetail.this, "获取课程详情失败，请稍后重试");
 
                     break;
                 case 6:
@@ -156,16 +156,16 @@ public class ActStudyDetail extends BaseActivity {
                     tv_data_null_tip.setVisibility(View.GONE);
                     break;
                 case 9:
-                   ToastUtils.showTextToast(ActStudyDetail.this,"网络异常，退课失败");
+                   ToastUtils.showTextToast(ActResouceLessonDetail.this,"网络异常，退课失败");
                     break;
                 case 10:
                     boolean isSuccess = (boolean) msg.obj;
                     if (isSuccess){
-                        ToastUtils.showTextToast(ActStudyDetail.this,"退课成功");
+                        ToastUtils.showTextToast(ActResouceLessonDetail.this,"退课成功");
                         EventBus.getDefault().post(new EventKillPositonStudy(itemPosition));
                         finish();
                     }else {
-                        ToastUtils.showTextToast(ActStudyDetail.this,"退课失败,请稍后重试");
+                        ToastUtils.showTextToast(ActResouceLessonDetail.this,"退课失败,请稍后重试");
                     }
                     break;
 
@@ -269,12 +269,12 @@ public class ActStudyDetail extends BaseActivity {
         setViewData();
 
         if (NetUtil.isNetworkConnected(this)) {
-            DialogUtils.showDialog(ActStudyDetail.this, "请稍等");
+            DialogUtils.showDialog(ActResouceLessonDetail.this, "请稍等");
             getLessonDetail();
             getCommentCounts();
 
         } else {
-            ToastUtils.showTextToast(ActStudyDetail.this, "网络未连接");
+            ToastUtils.showTextToast(ActResouceLessonDetail.this, "网络未连接");
         }
 
     }
@@ -479,7 +479,7 @@ public class ActStudyDetail extends BaseActivity {
         if (NetUtil.isNetworkConnected(this)) {
             unSelectedLess();
         } else {
-            ToastUtils.showTextToast(ActStudyDetail.this, "网络未连接");
+            ToastUtils.showTextToast(ActResouceLessonDetail.this, "网络未连接");
         }
     }
 
@@ -494,15 +494,15 @@ public class ActStudyDetail extends BaseActivity {
 
     public void videoStartPlay(int postion) {
         if (setionList == null) {
-            ToastUtils.showTextToast(ActStudyDetail.this, "请检查网络获取课程章节");
+            ToastUtils.showTextToast(ActResouceLessonDetail.this, "请检查网络获取课程章节");
             return;
         }
         if (setionList.size() == 0) {
-            ToastUtils.showTextToast(ActStudyDetail.this, "请检查网络获取课程章节");
+            ToastUtils.showTextToast(ActResouceLessonDetail.this, "请检查网络获取课程章节");
             return;
         }
         String url = Constants.PATH_PLAYER + childItemBean.getLeid() + "/" + setionList.get(postion).getSectionurl();
-        Intent startPlayIntent = new Intent(ActStudyDetail.this, VideoPlayerActivity.class);
+        Intent startPlayIntent = new Intent(ActResouceLessonDetail.this, VideoPlayerActivity.class);
         startPlayIntent.setData(Uri.parse(url));
         startActivity(startPlayIntent);
     }
